@@ -2,26 +2,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>InfoBox v1.1.12 [December 11, 2012] Reference</title>
+    <title>MarkerWithLabel for V3 v1.1.10 [April 8, 2014] Reference</title>
     <link rel="stylesheet" type="text/css" href="http://code.google.com/css/codesite.css"></link>
     <link rel="stylesheet" type="text/css" href="../../util/docs/template/local_extensions.css"></link>
   </head>
   <body>
-    <h1>InfoBox</h1>
+    <h1>MarkerWithLabel for V3</h1>
     <p>
-InfoBox extends the Google Maps JavaScript API V3 <tt>OverlayView</tt> class.
+MarkerWithLabel extends the Google Maps JavaScript API V3
+ <code>google.maps.Marker</code> class.
  <p>
- An InfoBox behaves like a <tt>google.maps.InfoWindow</tt>, but it supports several
- additional properties for advanced styling. An InfoBox can also be used as a map label.
+ MarkerWithLabel allows you to define markers with associated labels. As you would expect,
+ if the marker is draggable, so too will be the label. In addition, a marker with a label
+ responds to all mouse events in the same manner as a regular marker. It also fires mouse
+ events and "property changed" events just as a regular marker would. Version 1.1 adds
+ support for the raiseOnDrag feature introduced in API V3.3.
  <p>
- An InfoBox also fires the same events as a <tt>google.maps.InfoWindow</tt>.</p>
+ If you drag a marker by its label, you can cancel the drag and return the marker to its
+ original position by pressing the <code>Esc</code> key. This doesn't work if you drag the marker
+ itself because this feature is not (yet) supported in the <code>google.maps.Marker</code> class.</p>
     <p>For a description and examples of how to use this library, check out the <a href="examples.html">how-to</a>.</p>
 
-      <h2><a name="InfoBox"></a>class InfoBox</h2>
+      <h2><a name="MarkerWithLabel"></a>class MarkerWithLabel</h2>
       <p></p>
 
         <h3>Constructor</h3>
-        <table summary="class InfoBox - Constructor" width="90%">
+        <table summary="class MarkerWithLabel - Constructor" width="90%">
 
           <tbody>
             <tr>
@@ -31,262 +37,29 @@ InfoBox extends the Google Maps JavaScript API V3 <tt>OverlayView</tt> class.
             </tr>
 
               <tr class="odd">
-                <td><code>InfoBox(<span class="type">opt_opts?:InfoBoxOptions</span>)</code></td>
+                <td><code>MarkerWithLabel(<span class="type">opt_options?:MarkerWithLabelOptions</span>)</code></td>
 
-                <td>Creates an InfoBox with the options specified in <code><a href="reference.html#InfoBoxOptions">InfoBoxOptions</a></code>.
- Call <tt>InfoBox.open</tt> to add the box to the map.</td>
-              </tr>
-
-          </tbody>
-        </table>
-
-        <h3>Methods</h3>
-        <table summary="class InfoBox - Methods" width="90%">
-
-          <tbody>
-            <tr>
-              <th>Methods</th>
-
-
-                  <th>Return&nbsp;Value</th>
-
-
-              <th>Description</th>
-            </tr>
-
-              <tr class="odd">
-                <td><code>close()</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Removes the InfoBox from the map.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>draw()</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Draws the InfoBox based on the current map projection and zoom level.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>getContent()</code></td>
-
-
-                    <td><code>string</code></td>
-
-
-                <td>Returns the content of the InfoBox.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>getPosition()</code></td>
-
-
-                    <td><code>LatLng</code></td>
-
-
-                <td>Returns the geographic location of the InfoBox.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>getVisible()</code></td>
-
-
-                    <td><code>boolean</code></td>
-
-
-                <td>Returns a flag indicating whether the InfoBox is visible.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>getZIndex()</code></td>
-
-
-                    <td><code>number</code></td>
-
-
-                <td>Returns the zIndex for the InfoBox.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>hide()</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Hides the InfoBox. [Deprecated; use <tt>setVisible</tt> instead.]</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>onRemove()</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Invoked when <tt>close</tt> is called. Do not call it directly.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>open(<span class="type">map:Map|StreetViewPanorama</span>, <span class="type">anchor?:MVCObject</span>)</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Adds the InfoBox to the specified map or Street View panorama. If <tt>anchor</tt>
- (usually a <tt>google.maps.Marker</tt>) is specified, the position
- of the InfoBox is set to the position of the <tt>anchor</tt>. If the
- anchor is dragged to a new location, the InfoBox moves as well.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>setContent(<span class="type">content:string|Node</span>)</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Sets the content of the InfoBox.
- The content can be plain text or an HTML DOM node.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>setOptions(<span class="type">opt_opts:InfoBoxOptions</span>)</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Sets the options for the InfoBox. Note that changes to the <tt>maxWidth</tt>,
- <tt>closeBoxMargin</tt>, <tt>closeBoxURL</tt>, and <tt>enableEventPropagation</tt>
- properties have no affect until the current InfoBox is <tt>close</tt>d and a new one
- is <tt>open</tt>ed.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>setPosition(<span class="type">latlng:LatLng</span>)</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Sets the geographic location of the InfoBox.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>setVisible(<span class="type">isVisible:boolean</span>)</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Sets the visibility of the InfoBox.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>setZIndex(<span class="type">index:number</span>)</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Sets the zIndex style for the InfoBox.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>show()</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>Shows the InfoBox. [Deprecated; use <tt>setVisible</tt> instead.]</td>
-              </tr>
-
-          </tbody>
-        </table>
-
-        <h3>Events</h3>
-        <table summary="class InfoBox - Events" width="90%">
-
-          <tbody>
-            <tr>
-              <th>Events</th>
-
-
-                  <th>Arguments</th>
-
-
-              <th>Description</th>
-            </tr>
-
-              <tr class="odd">
-                <td><code>closeclick</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>This event is fired when the InfoBox's close box is clicked.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>content_changed</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>This event is fired when the content of the InfoBox changes.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>domready</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>This event is fired when the DIV containing the InfoBox's content is attached to the DOM.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>position_changed</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>This event is fired when the position of the InfoBox changes.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>zindex_changed</code></td>
-
-
-                    <td><code>None</code></td>
-
-
-                <td>This event is fired when the zIndex of the InfoBox changes.</td>
+                <td>Creates a MarkerWithLabel with the options specified in <code><a href="reference.html#MarkerWithLabelOptions">MarkerWithLabelOptions</a></code>.</td>
               </tr>
 
           </tbody>
         </table>
 
 
-      <h2><a name="InfoBoxOptions"></a>class InfoBoxOptions</h2>
-      <p>This class represents the optional parameter passed to the <code><a href="reference.html#InfoBox">InfoBox</a></code> constructor.  There is no constructor for this class.  Instead, this class is instantiated as a javascript object literal.</p>
+      <h2><a name="MarkerWithLabelOptions"></a>class MarkerWithLabelOptions</h2>
+      <p>This class represents the optional parameter passed to the <code><a href="reference.html#MarkerWithLabel">MarkerWithLabel</a></code> constructor.
+ The properties available are the same as for <code>google.maps.Marker</code> with the addition
+ of the properties listed below. To change any of these additional properties after the labeled
+ marker has been created, call <code>google.maps.Marker.set(propertyName, propertyValue)</code>.
+ <p>
+ When any of these properties changes, a property changed event is fired. The names of these
+ events are derived from the name of the property and are of the form <code>propertyname_changed</code>.
+ For example, if the content of the label changes, a <code>labelcontent_changed</code> event
+ is fired.
+ <p>  There is no constructor for this class.  Instead, this class is instantiated as a javascript object literal.</p>
 
         <h3>Properties</h3>
-        <table summary="class InfoBoxOptions - Properties" width="90%">
+        <table summary="class MarkerWithLabelOptions - Properties" width="90%">
 
           <tbody>
             <tr>
@@ -300,181 +73,127 @@ InfoBox extends the Google Maps JavaScript API V3 <tt>OverlayView</tt> class.
             </tr>
 
               <tr class="odd">
-                <td><code>alignBottom</code></td>
-
-
-                    <td><code>boolean</code></td>
-
-
-                <td>Align the bottom left corner of the InfoBox to the <code>position</code>
- location (default is <tt>false</tt> which means that the top left corner of the InfoBox is aligned).</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>boxClass</code></td>
+                <td><code>crossImage</code></td>
 
 
                     <td><code>string</code></td>
 
 
-                <td>The name of the CSS class defining the styles for the InfoBox container.  The default value is <code>"infoBox"</code>.</td>
+                <td>The URL of the cross image to be displayed while dragging a marker.  The default value is <code>"http://maps.gstatic.com/intl/en_us/mapfiles/drag_cross_67_16.png"</code>.</td>
+              </tr>
+
+              <tr class="even">
+                <td><code>handCursor</code></td>
+
+
+                    <td><code>string</code></td>
+
+
+                <td>The URL of the cursor to be displayed while dragging a marker.  The default value is <code>"http://maps.gstatic.com/intl/en_us/mapfiles/closedhand_8_8.cur"</code>.</td>
               </tr>
 
               <tr class="odd">
-                <td><code>boxStyle</code></td>
+                <td><code>labelAnchor</code></td>
+
+
+                    <td><code>Point</code></td>
+
+
+                <td>By default, a label is drawn with its anchor point at (0,0) so
+ that its top left corner is positioned at the anchor point of the associated marker. Use this
+ property to change the anchor point of the label. For example, to center a 50px-wide label
+ beneath a marker, specify a <code>labelAnchor</code> of <code>google.maps.Point(25, 0)</code>.
+ (Note: x-values increase to the right and y-values increase to the top.)</td>
+              </tr>
+
+              <tr class="even">
+                <td><code>labelClass</code></td>
+
+
+                    <td><code>string</code></td>
+
+
+                <td>The name of the CSS class defining the styles for the label.
+ Note that style values for <code>position</code>, <code>overflow</code>, <code>top</code>,
+ <code>left</code>, <code>zIndex</code>, <code>display</code>, <code>marginLeft</code>, and
+ <code>marginTop</code> are ignored; these styles are for internal use only.</td>
+              </tr>
+
+              <tr class="odd">
+                <td><code>labelContent</code></td>
+
+
+                    <td><code>string|Node</code></td>
+
+
+                <td>The content of the label (plain text or an HTML DOM node).</td>
+              </tr>
+
+              <tr class="even">
+                <td><code>labelInBackground</code></td>
+
+
+                    <td><code>boolean</code></td>
+
+
+                <td>A flag indicating whether a label that overlaps its
+ associated marker should appear in the background (i.e., in a plane below the marker).
+ The default is <code>false</code>, which causes the label to appear in the foreground.</td>
+              </tr>
+
+              <tr class="odd">
+                <td><code>labelStyle</code></td>
 
 
                     <td><code>Object</code></td>
 
 
                 <td>An object literal whose properties define specific CSS
- style values to be applied to the InfoBox. Style values defined here override those that may
- be defined in the <code>boxClass</code> style sheet. If this property is changed after the
- InfoBox has been created, all previously set styles (except those defined in the style sheet)
- are removed from the InfoBox before the new style values are applied.</td>
+ style values to be applied to the label. Style values defined here override those that may
+ be defined in the <code>labelClass</code> style sheet. If this property is changed after the
+ label has been created, all previously set styles (except those defined in the style sheet)
+ are removed from the label before the new style values are applied.
+ Note that style values for <code>position</code>, <code>overflow</code>, <code>top</code>,
+ <code>left</code>, <code>zIndex</code>, <code>display</code>, <code>marginLeft</code>, and
+ <code>marginTop</code> are ignored; these styles are for internal use only.</td>
               </tr>
 
               <tr class="even">
-                <td><code>closeBoxMargin</code></td>
-
-
-                    <td><code>string</code></td>
-
-
-                <td>The CSS margin style value for the close box.
- The default is "2px" (a 2-pixel margin on all sides).</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>closeBoxURL</code></td>
-
-
-                    <td><code>string</code></td>
-
-
-                <td>The URL of the image representing the close box.
- Note: The default is the URL for Google's standard close box.
- Set this property to "" if no close box is required.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>content</code></td>
-
-
-                    <td><code>string|Node</code></td>
-
-
-                <td>The content of the InfoBox (plain text or an HTML DOM node).</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>disableAutoPan</code></td>
+                <td><code>labelVisible</code></td>
 
 
                     <td><code>boolean</code></td>
 
 
-                <td>Disable auto-pan on <tt>open</tt>.  The default value is <code>false</code>.</td>
+                <td>A flag indicating whether the label is to be visible.
+ The default is <code>true</code>. Note that even if <code>labelVisible</code> is
+ <code>true</code>, the label will <i>not</i> be visible unless the associated marker is also
+ visible (i.e., unless the marker's <code>visible</code> property is <code>true</code>).</td>
               </tr>
 
-              <tr class="even">
-                <td><code>enableEventPropagation</code></td>
+              <tr class="odd">
+                <td><code>optimized</code></td>
 
 
                     <td><code>boolean</code></td>
 
 
-                <td>Propagate mousedown, mousemove, mouseover, mouseout,
- mouseup, click, dblclick, touchstart, touchend, touchmove, and contextmenu events in the InfoBox
- (default is <tt>false</tt> to mimic the behavior of a <tt>google.maps.InfoWindow</tt>). Set
- this property to <tt>true</tt> if the InfoBox is being used as a map label.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>infoBoxClearance</code></td>
-
-
-                    <td><code>Size</code></td>
-
-
-                <td>Minimum offset (in pixels) from the InfoBox to the
- map edge after an auto-pan.</td>
+                <td>A flag indicating whether rendering is to be optimized for the
+ marker. <b>Important: The optimized rendering technique is not supported by MarkerWithLabel,
+ so the value of this parameter is always forced to <code>false</code>.</td>
               </tr>
 
               <tr class="even">
-                <td><code>isHidden</code></td>
+                <td><code>raiseOnDrag</code></td>
 
 
                     <td><code>boolean</code></td>
 
 
-                <td>Hide the InfoBox on <tt>open</tt>.
- [Deprecated in favor of the <tt>visible</tt> property.]  The default value is <code>false</code>.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>maxWidth</code></td>
-
-
-                    <td><code>number</code></td>
-
-
-                <td>The maximum width (in pixels) of the InfoBox. Set to 0 if no maximum.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>pane</code></td>
-
-
-                    <td><code>string</code></td>
-
-
-                <td>The pane where the InfoBox is to appear (default is "floatPane").
- Set the pane to "mapPane" if the InfoBox is being used as a map label.
- Valid pane names are the property names for the <tt>google.maps.MapPanes</tt> object.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>pixelOffset</code></td>
-
-
-                    <td><code>Size</code></td>
-
-
-                <td>The offset (in pixels) from the top left corner of the InfoBox
- (or the bottom left corner if the <code>alignBottom</code> property is <code>true</code>)
- to the map pixel corresponding to <tt>position</tt>.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>position</code></td>
-
-
-                    <td><code>LatLng</code></td>
-
-
-                <td>The geographic location at which to display the InfoBox.</td>
-              </tr>
-
-              <tr class="odd">
-                <td><code>visible</code></td>
-
-
-                    <td><code>boolean</code></td>
-
-
-                <td>Show the InfoBox on <tt>open</tt>.  The default value is <code>true</code>.</td>
-              </tr>
-
-              <tr class="even">
-                <td><code>zIndex</code></td>
-
-
-                    <td><code>number</code></td>
-
-
-                <td>The CSS z-index style value for the InfoBox.
- Note: This value overrides a zIndex setting specified in the <tt>boxStyle</tt> property.</td>
+                <td>A flag indicating whether the label and marker are to be
+ raised when the marker is dragged. The default is <code>true</code>. If a draggable marker is
+ being created and a version of Google Maps API earlier than V3.3 is being used, this property
+ must be set to <code>false</code>.</td>
               </tr>
 
           </tbody>
